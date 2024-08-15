@@ -23,9 +23,9 @@ public abstract class Heap {
         return 2*i+2;
     }
 
-    public int returnTopElement() {
+    public int returnTopElement() throws Exception {
         if(isHeapFull()) {
-            throw new RuntimeException("Heap is full");
+            throw new Exception("Heap is full");
         }
         return heap[0];
     }
@@ -43,7 +43,7 @@ public abstract class Heap {
 
     public abstract void insertKey(int key);
 
-    public abstract int extractTopElement();
+    public abstract int extractTopElement() throws Exception;
 
     public abstract void deleteKey(int index);
 
@@ -57,5 +57,9 @@ public abstract class Heap {
         return false;
     }
 
-
+    public boolean isHeapEmpty() {
+        if(currentHeapSize == 0)
+            return true;
+        return false;
+    }
 }

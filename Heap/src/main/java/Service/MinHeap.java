@@ -18,7 +18,20 @@ public class MinHeap extends Heap{
 
     @Override
     public int extractTopElement() {
-        return 0;
+        if(isHeapEmpty()) {
+            throw new RuntimeException("Heap is empty");
+        }
+        int topValue = heap[0];
+
+        if(currentHeapSize == 1) {
+            currentHeapSize--;
+            return topValue;
+        }
+        heap[0] = heap[currentHeapSize-1];
+        currentHeapSize--;
+        heapifyFromTop();
+
+        return topValue;
     }
 
     @Override
@@ -43,5 +56,19 @@ public class MinHeap extends Heap{
         int temp = heap[firstIndex];
         heap[firstIndex] = heap[secondIndex];
         heap[secondIndex] = temp;
+    }
+
+    private void heapifyFromTop() {
+        int currentIndex = 0, minIndex = 0;
+        while(currentIndex < currentHeapSize) {
+            if (leftChild(currentIndex) < currentHeapSize && heap[leftChild(currentIndex)] < heap[currentIndex])
+                minIndex = leftChild(currentIndex);
+            if (rightChild(currentIndex) < currentHeapSize && heap[rightChild(currentIndex)] < heap[minIndex])
+                minIndex = rightChild(currentIndex);
+            if(currentIndex != minIndex) {
+                swapNodes(currentIndex, minIndex);
+                heapifyFromTop();
+            }
+        }
     }
 }
