@@ -51,7 +51,7 @@ public abstract class Heap {
 
     //validate base case
     public boolean isHeapFull() {
-        if(heap.length == currentHeapSize-1) {
+        if(currentHeapSize == heapSize) {
             return true;
         }
         return false;

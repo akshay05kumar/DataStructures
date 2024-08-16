@@ -13,11 +13,11 @@ public class Main {
         //we need an object of factory
         HeapObjectFactory heapObjectFactory = new HeapObjectFactory();
         try{
-            Heap heap = heapObjectFactory.getHeapObject(HeapType.MINHEAP, 7);
+            Heap heap = heapObjectFactory.getHeapObject(HeapType.MINHEAP, 5);
 
             while(true) {
                 try{
-                    System.out.println("Chose operation:");
+                    System.out.println("Chose operation: 1 ro print, 2 to add key, 3 to extract min, 4 to delete a key");
                     int input = scanner.nextInt();
 
                     if(input == 1) {
@@ -34,6 +34,11 @@ public class Main {
                         int key = heap.extractTopElement();
                         System.out.println("extracted top element = " + key);
                         continue;
+                    }
+                    if(input == 4) {
+                        System.out.println("Enter deletion index");
+                        int index = scanner.nextInt();
+                        heap.deleteKey(index);
                     }
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
