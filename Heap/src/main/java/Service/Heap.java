@@ -39,15 +39,59 @@ public abstract class Heap {
         for (int i=0; i<currentHeapSize; i++) {
             System.out.print(heap[i] + " ");
         }
+        System.out.println("");
     }
 
-    public abstract void insertKey(int key);
+    public void insertKey(int key) {
+        if(isHeapFull()) {
+            throw new ArrayIndexOutOfBoundsException("Heap is full, can't insert the key");
+        }
+        currentHeapSize++;
+        heap[currentHeapSize-1] = key;
+        heapifyFromBottom();
+    }
 
-    public abstract int extractTopElement() throws Exception;
+    public abstract void heapifyFromBottom();
 
-    public abstract void deleteKey(int index);
+    public int extractTopElement() {
+        if(isHeapEmpty()) {
+            throw new RuntimeException("Heap is empty");
+        }
+        int topValue = heap[0];
+
+        if(currentHeapSize == 1) {
+            currentHeapSize--;
+            return topValue;
+        }
+        heap[0] = heap[currentHeapSize-1];
+        currentHeapSize--;
+        heapifyFromTop(0);
+
+        return topValue;
+    }
+
+    public void deleteKey(int index){
+        if(isHeapEmpty()) {
+            throw new RuntimeException("Heap is already empty");
+        }
+        if(index >=currentHeapSize) {
+            throw new RuntimeException("Provided index is out of current heap size");
+        }
+        currentHeapSize--;
+        if(currentHeapSize == 0) {
+            System.out.println("Key is deleted");
+            return;
+        }
+
+        //replace the index value with last element
+        heap[index] = heap[currentHeapSize];
+        heapifyFromTop(index);
+        System.out.println("Key is deleted");
+    }
 
     public abstract void changeValueAtIndex(int index, int newValue);
+
+    public abstract void heapifyFromTop(int index);
 
     //validate base case
     public boolean isHeapFull() {
