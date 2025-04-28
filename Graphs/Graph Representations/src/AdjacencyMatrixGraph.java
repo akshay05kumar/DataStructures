@@ -1,4 +1,4 @@
-public class AdjacencyMatrixGraph {
+public class AdjacencyMatrixGraph implements IGraphRepresentation{
     private boolean [][] graph;
     private int noOfVertices = 0;
 

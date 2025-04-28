@@ -3,14 +3,15 @@ public class Main {
 
         System.out.println("Hello world!");
 
-        AdjacencyMatrixGraph adjacencyMatrixGraph = new AdjacencyMatrixGraph(4);
+        IGraphRepresentation graph = new AdjacencyListGraph(5);
 
-        adjacencyMatrixGraph.printGraph();
-        adjacencyMatrixGraph.addEdge(0,1);
-        adjacencyMatrixGraph.addEdge(0,2);
-        adjacencyMatrixGraph.addEdge(1,2);
-        adjacencyMatrixGraph.addEdge(2,3);
+        graph.printGraph();
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+        graph.addEdge(1,2);
+        graph.addEdge(2,3);
 
-        adjacencyMatrixGraph.printGraph();
+        graph.printGraph();
+
     }
 }
